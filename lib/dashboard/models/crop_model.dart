@@ -11,7 +11,7 @@ class CropModel {
 
   factory CropModel.fromJson(Map<String, dynamic> json){
     return CropModel(
-      id: json["id"] ?? 0,
+      id: int.parse(json["id"]) ?? 0,
       name: json["commodityName"],
       imageUrl: json["photo"]
     );

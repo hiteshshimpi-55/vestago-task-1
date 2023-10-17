@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vestago_task/dashboard/views/screens/dashboard_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,9 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Center(
-        child: Text("Home Screen"),
-      ),
+      body: const DashboardScreen(),
       bottomNavigationBar: BottomNavigationBar(
         items: const  [
           BottomNavigationBarItem(
