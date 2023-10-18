@@ -7,6 +7,6 @@ class PriceItem {
 
   factory PriceItem.fromJson(Map<String, dynamic> json) {
     return PriceItem(
-        date: json["date"], price: json["price"], sku: json["sku"]);
+        date: json["date"], price: double.parse(json["price"]), sku: json["sku"]);
   }
 }

@@ -15,7 +15,7 @@ class BuyerProvider with ChangeNotifier {
   }
 
   // Getters
-  bool get loading => loading;
+  bool get loading => _loading;
   Future<List<BuyerModel>> get buyers => _buyers;
   CommonError get error => _error;
 
@@ -36,10 +36,11 @@ class BuyerProvider with ChangeNotifier {
   void getBuyers() async {
     setLoading(true);
 
-    var response = await DashboardService.getCrops();
+    var response = await DashboardService.getBuyers();
 
     if (response is Success) {
-      List<BuyerModel> list = response.response as List<BuyerModel>;
+      List<BuyerModel> list =  (response.response as List).map((e) => BuyerModel.fromJson(e)).toList();
+      setBuyers(list);
       print("Response in the List ${list}");
     } else if (response is Failure) {
       CommonError newError = CommonError(

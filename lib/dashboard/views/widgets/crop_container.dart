@@ -12,11 +12,14 @@ class CropContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return ChangeNotifierProvider(
-          create: (_)=>CropsProvider(),
-          child: Consumer<CropsProvider>(
-            builder: (context,cropProvider,child) => _futureWidget(context,cropProvider,size),
-          ),
+    return Container(
+      height: 250,
+      child: ChangeNotifierProvider(
+            create: (_)=>CropsProvider(),
+            child: Consumer<CropsProvider>(
+              builder: (context,cropProvider,child) => _futureWidget(context,cropProvider,size),
+            ),
+      ),
     );
   }
 
@@ -54,39 +57,47 @@ class CropContainer extends StatelessWidget {
     }
   }
   Widget _ui(BuildContext context,CropsProvider provider,Size size){
-    return Container(
-      height: 500,
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: provider.textEditingController,
-              onChanged: (text){
-                provider.filterItems(text);
-              },
-              decoration: const InputDecoration(
-                labelText: 'Search',
-                hintText: 'Search . . .',
-                prefixIcon: Icon(Icons.search)
+    return Column(
+      children: <Widget>[
+        SizedBox(
+          height: 70,
+          child: Card(
+            elevation: 4,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: provider.textEditingController,
+                onChanged: (text) {
+                  provider.filterItems(text);
+                },
+                decoration: const InputDecoration(
+                  hintText: 'Search Specific Crop',
+                  border: InputBorder.none,
+                  suffixIcon: Icon(Icons.search),
+                ),
               ),
             ),
           ),
-          Expanded(
-            child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                ),
-                itemCount: provider.filteredList.length,
-                itemBuilder: (context,index){
-                  return CropCard(
-                      model: provider.filteredList[index]
-                  );
-                },
-            ),
-          )
-        ],
-      ),
+        ),
+        const SizedBox(height:20),
+        Expanded(
+          child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: 100/40
+              ),
+              itemCount: provider.filteredList.length,
+              itemBuilder: (context,index){
+                return CropCard(
+                    model: provider.filteredList[index]
+                );
+              },
+          ),
+        )
+      ],
     );
   }
 }

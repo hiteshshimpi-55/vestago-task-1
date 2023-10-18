@@ -24,12 +24,15 @@ class CropCard extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 10),
-            Text(
-              model.name,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: Colors.black
+            Expanded(
+              child: Text(
+                model.name,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: Colors.black,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             )
           ],
