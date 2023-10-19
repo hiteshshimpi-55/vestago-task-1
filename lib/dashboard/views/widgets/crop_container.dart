@@ -14,11 +14,8 @@ class CropContainer extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Container(
       height: 250,
-      child: ChangeNotifierProvider(
-            create: (_)=>CropsProvider(),
-            child: Consumer<CropsProvider>(
-              builder: (context,cropProvider,child) => _futureWidget(context,cropProvider,size),
-            ),
+      child: Consumer<CropsProvider>(
+        builder: (context,cropProvider,child) => _futureWidget(context,cropProvider,size),
       ),
     );
   }

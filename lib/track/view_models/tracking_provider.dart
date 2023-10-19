@@ -137,7 +137,6 @@ class TrackProvider with ChangeNotifier {
 
   // Load asset icons for marker
   void setCustomMarkerIcon() {
-    print("Yeh Chala ki nahi lode ");
     BitmapDescriptor.fromAssetImage(
             ImageConfiguration.empty, "assets/icons/car.png")
         .then((icon) {
@@ -154,7 +153,6 @@ class TrackProvider with ChangeNotifier {
 
   // Fetch current location of user
   Future<void> getLocationUpdates() async {
-    print("BC idhar aa bhi nahi raha hai 1");
     setFetchingLocation(true);
     bool serviceEnabeled;
     PermissionStatus permissonGranted;

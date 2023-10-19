@@ -17,12 +17,9 @@ class BuyerContainer extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Container(
       height: 130,
-      child: ChangeNotifierProvider(
-        create: (_) => BuyerProvider(),
-        child: Consumer<BuyerProvider>(
-          builder: (context, buyerProvider, child) =>
-              _futureWidget(context, buyerProvider, size),
-        ),
+      child: Consumer<BuyerProvider>(
+        builder: (context, buyerProvider, child) =>
+            _futureWidget(context, buyerProvider, size),
       ),
     );
   }

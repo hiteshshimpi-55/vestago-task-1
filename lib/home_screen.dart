@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vestago_task/dashboard/views/screens/dashboard_screen.dart';
-import 'package:vestago_task/track/views/track_screen.dart';
+import 'package:vestago_task/track/views/screens/track_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,11 +12,24 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   int _index = 0;
+  PageController _pageController = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: TrackingScreen(),
+      body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        onPageChanged: (int index){
+          setState(() {
+            _index = index;
+          });
+        },
+        controller: _pageController,
+        children: [
+          DashboardScreen(),
+          TrackingScreen()
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const  [
           BottomNavigationBarItem(
@@ -38,9 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.white,
         showSelectedLabels: true,
         onTap: (int index){
-          setState(() {
-            _index = index;
-          });
+          _pageController.jumpToPage(index);
         },
       ),
     );

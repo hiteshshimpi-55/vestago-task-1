@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vestago_task/home_screen.dart';
+import 'package:vestago_task/track/view_models/tracking_provider.dart';
+
+import 'dashboard/view_models/buyer_provider.dart';
+import 'dashboard/view_models/crops_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => BuyerProvider()),
+          ChangeNotifierProvider(create: (_) => CropsProvider()),
+          ChangeNotifierProvider(create: (_) => TrackProvider())
+        ],
+          child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
