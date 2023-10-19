@@ -14,9 +14,3 @@ const NO_INTERNET = 101;
 const INVALID_FORMAT = 102;
 const UNKNOWN_ERROR = 103;
 
-// Text Style
- TextStyle textStyle = const TextStyle(
-  color: Colors.black,
-   fontWeight: FontWeight.bold,
-   fontSize: 16
-);
